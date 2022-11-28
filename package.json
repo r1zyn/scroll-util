@@ -44,6 +44,9 @@
         "typescript": "*"
     },
     "lint-staged": {
-        "src/**/*.ts": "eslint --fix && prettier --write --ignore-unknown"
+        "src/**/*.ts": [
+            "eslint --fix",
+            "prettier --write --ignore-unknown"
+        ]
     }
 }
