@@ -6,16 +6,20 @@
     "homepage": "https://github.com/r1zyn/scroll-util#readme",
     "private": false,
     "main": "build/index.js",
+    "types": "build/index.d.ts",
     "scripts": {
         "build": "tsc",
         "format": "prettier --write --ignore-unknown \"src/**/*.ts\"",
         "lint": "eslint --fix \"src/**/*.ts\"",
+        "postversion": "git push && git push --tags",
         "prepare": "husky install",
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "prepublishOnly": "yarn test && yarn lint",
+        "preversion": "yarn lint",
+        "test": "npx jest --config jestconfig.json",
+        "version": "yarn format && git add -A src"
     },
     "files": [
-        "build/**/*",
-        "index.d.ts"
+        "build/**/*"
     ],
     "repository": {
         "type": "git",
@@ -30,7 +34,15 @@
         "name": "tncz",
         "url": "https://github.com/r1zyn"
     },
+    "keywords": [
+        "web",
+        "browser",
+        "util",
+        "DOM",
+        "scroll"
+    ],
     "devDependencies": {
+        "@types/jest": "^29.2.3",
         "@typescript-eslint/eslint-plugin": "^5.0.0",
         "eslint": "^8.0.1",
         "eslint-config-prettier": "^8.5.0",
@@ -39,12 +51,14 @@
         "eslint-plugin-n": "^15.0.0",
         "eslint-plugin-promise": "^6.0.0",
         "husky": "^8.0.2",
+        "jest": "^29.3.1",
         "lint-staged": "^13.0.4",
         "prettier": "^2.8.0",
+        "ts-jest": "^29.0.3",
         "typescript": "*"
     },
     "lint-staged": {
-        "src/**/*.ts": [
+        ".{ts,json}": [
             "eslint --fix",
             "prettier --write --ignore-unknown"
         ]

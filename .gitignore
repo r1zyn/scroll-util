@@ -1,8 +1,10 @@
-# source
-src
+# output
+build
+tsconfig.tsbuildinfo
 
 # yarn
 yarn.lock
+.yarnrc
 
 # dependencies
 node_modules
